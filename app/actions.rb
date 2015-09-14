@@ -4,5 +4,20 @@ get '/' do
 end
 
 get '/tracks' do
-  'Track List here'
+  @tracks = Track.all
+  erb :'tracks/index'
+end
+
+get '/tracks/new' do
+  erb :'tracks/new'
+end
+
+post '/tracks' do
+  @track = Track.new(
+    author: params[:author],
+    title: params[:title],
+    URL: params[:URL]
+    )
+  @track.save
+  redirect '/tracks/new'
 end
