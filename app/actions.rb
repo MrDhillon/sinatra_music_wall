@@ -12,12 +12,20 @@ get '/tracks/new' do
   erb :'tracks/new'
 end
 
+get '/tracks/:id' do
+  @track = Track.find params[:id]
+  erb :'tracks/show'
+end
+
 post '/tracks' do
   @track = Track.new(
     author: params[:author],
     title: params[:title],
     URL: params[:URL]
     )
-  @track.save
-  redirect '/tracks/new'
+  if @track.save
+    redirect '/tracks'
+  else
+    erb :'tracks/new'
+  end
 end

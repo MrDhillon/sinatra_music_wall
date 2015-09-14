@@ -2,7 +2,7 @@
 
 <% @tracks.each do |track| %>
   <div class="track">
-    <h3><%= track.title %> by: <%= track.author %> </h3>
+    <h3><a href="/tracks/<%= track.id %>"> <%= track.title %> by: <%= track.author %> </a> </h3>
     <p> <%= track.URL %> </p>
      <p> <%= track.created_at %> </p>
   </div>
