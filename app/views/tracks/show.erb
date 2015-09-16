@@ -1,12 +1,29 @@
-<h1><%= @track.title %></h1>
+<!-- Footer -->
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 col-lg-offset-1 text-center">
+        <form method='post' action='/review'>
+          <input type="hidden" name = 'track_id' value="<%=@track.id%>">
+          Review song: <input type="text" name="review" value="Your review here"><br>
+          <input type="submit" value="Submit">
+        </form>
+        <h4><strong><%= @track.title %></strong>
+        </h4>
+        <p>By Artist: <%= @track.author %></p>
+        <br>
+        <p><a href="/tracks"> Back to All Tracks </a></p>
+        <br>
+        <div>
+        <h2>User Reviews</h2>
+        <% @review.each do |review| %>
+          <div class="review">
+            <h3><%= review.review %> by <%= review.user_id %></h3>
+          </div>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<p>
-  Author: <%= @track.author %>
-</p>
-
-<p>
-  <%= @track.URL  %>
-</p>
-
-<hr/>
-<a href="/tracks"> Back to All Tracks </a>

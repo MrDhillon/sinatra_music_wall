@@ -1,9 +1,62 @@
-<a href="/tracks/new">Add a song to the list!</a>
-
-<% @tracks.each do |track| %>
-  <div class="track">
-    <h3><a href="/tracks/<%= track.id %>"> <%= track.title %> by: <%= track.author %> </a> </h3>
-    <p> <%= track.URL %> </p>
-     <p> <%= track.created_at %> </p>
+<!-- Header -->
+<header id="top" class="header">
+  <div class="text-vertical-center">
+    <h1>Welcome To Community Music Wall</h1>
+    <h3>Scroll down to start posting and voting!</h3>
+    <h3><a href = "/logout">Logout</a></h3>
+    <br>
   </div>
-<% end %>
+</header>
+<!-- About -->
+<section id="about" class="about">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2><a href="/tracks/new">Add a track to the wall!</a></h2>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
+</section>
+<!-- Call to Action -->
+<aside class="call-to-action bg-primary">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h3>The buttons below are impossible to resist.</h3>
+        <a href="#" class="btn btn-lg btn-light">Click Me!</a>
+        <a href="#" class="btn btn-lg btn-dark">Look at Me!</a>
+      </div>
+    </div>
+  </div>
+</aside>
+<!--     All track-->
+<section id="about" class="about">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+
+        <% @tracks.each do |track| %>
+        <div class="track">
+          <h3><a href="/tracks/<%= track.id %>"> <%= track.title %> by <%= track.author %></a><small> likes = <%= track.votes.count %></small></h3>
+          <p>Created at : <%= track.created_at.to_date %></p>
+          <p><a href ="/<%= track.author %>/tracks">All tracks by this author</a></p>
+          <div class="col-lg-12 text-center">
+            <form method='post' action='/vote'>
+              <div>
+                <input type="hidden" name = 'track_id' value="<%=track.id%>">
+                <input class="btn btn-lg btn-dark" type="submit" value="Vote">
+              </div>
+            </form>
+          </div>
+          <p><a href=<%= track.URL %> ><%= track.URL %></a></p>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
+</section>
+
